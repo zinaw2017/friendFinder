@@ -1,7 +1,7 @@
 # FriendFinder
 This is an application that uses Node.js and Express to run the web server, to serve up the application.  The application requests a user take a survey to help match them with other friends on the site.
 
-You may go to (https://github.com/zinaw2017/friendFinder) to do the servey on heroku.
+You may go to https://friend-finder0.herokuapp.com/home.html) to do the servey on heroku.
 
 ## Technologies used
 The following technologies, tools, and npm packages were used:
