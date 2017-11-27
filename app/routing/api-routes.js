@@ -1,44 +1,78 @@
-//a POST routes /api/friends - this handles incoming survey results. will also used to handle the compatibility logic
-//Load Data
-var friendList = require('../data/friend.js');
 
-module.exports = function(app){
-  //a GET route that displays JSON of all possible friends
-  app.get('/api/friends', function(req,res){
-    res.json(friendList);
-  });
+module.exports = function(app, friends) {
 
-  app.post('/api/friends', function(req,res){
-    //grabs the new friend's scores to compare with friends in friendList array
-    var newFriendScores = req.body.scores;
-    var scoresArray = [];
-    var friendCount = 0;
-    var bestMatch = 0;
+// API GET Request - Allows user to view the 
+app.get('/api/:friends?', function (req, res) {
+	
+	var chosen = req.params.friends;
 
-    //runs through all current friends in list
-    for(var i=0; i<friendList.length; i++){
-      var scoresDiff = 0;
-      //run through scores to compare friends
-      for(var j=0; j<newFriendScores.length; j++){
-        scoresDiff += (Math.abs(parseInt(friendList[i].scores[j]) - parseInt(newFriendScores[j])));
+	if (chosen === 'friends') { 
+
+		res.json(friends); 
+
+	} else {
+		console.log(chosen);
+
+		for (var i = 0; i < friends.length; i++) {
+			if (chosen === friends[i].routeName) {
+				res.json(friends[i]);
+				return;
+			}
+		}
+		res.json(false);
+
+	};
+ });
+
+// Create New Characters - takes in JSON input
+app.post('/api/friends', function(req, res) {
+
+		  // currentUser is the user that filled out the survey
+      var currentUser = req.body;
+
+      // compute best match from scores
+      var bestMatch = {};
+
+      // For Loop to checked the scores array and based on the value text it converts the value to an integer
+      for(var i = 0; i < currentUser.scores.length; i++) {
+        if(currentUser.scores[i] == "1 (Strongly Disagree)") {
+          currentUser.scores[i] = 1;
+        } else if(currentUser.scores[i] == "5 (Strongly Agree)") {
+          currentUser.scores[i] = 5;
+        } else {
+          currentUser.scores[i] = parseInt(currentUser.scores[i]);
+        }
+      }
+      // compare the scores of currentUser with the scores of each friend stored in the friends object 
+      // and find the friend with the smallest difference when each set of scores is compared
+
+      var bestMatchIndex = 0;
+      var bestMatchDifference = 40;
+
+      for(var i = 0; i < friends.length; i++) {
+        var totalDifference = 0;
+
+        for(var index = 0; index < friends[i].scores.length; index++) {
+          var differenceOneScore = Math.abs(friends[i].scores[index] - currentUser.scores[index]);
+          totalDifference += differenceOneScore;
+        }
+
+        // if the totalDifference in scores is less than the best match so far
+        // save that index and difference
+        if (totalDifference < bestMatchDifference) {
+          bestMatchIndex = i;
+          bestMatchDifference = totalDifference;
+        }
       }
 
-      //push results into scoresArray
-      scoresArray.push(scoresDiff);
-    }
+      // the best match index is used to get the best match data from the friends index
+      bestMatch = friends[bestMatchIndex];
 
-    //after all friends are compared, find best match
-    for(var i=0; i<scoresArray.length; i++){
-      if(scoresArray[i] <= scoresArray[bestMatch]){
-        bestMatch = i;
-      }
-    }
+      // Put new friend from survey in "database" array
+      friends.push(currentUser);
 
-    //return bestMatch data
-    var bff = friendList[bestMatch];
-    res.json(bff);
-
-    //pushes new submission into the friendsList array
-    friendList.push(req.body);
+      // return the best match friend
+      res.json(bestMatch);
   });
+
 };

@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<html>
 <head>
-  <meta charset="UTF-8">
-  <!-- materialize -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-  <!-- materialize icons -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!--Let browser know website is optimized for mobile-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-  <title>Friend Finder</title>
+	<meta charset="UTF-8">
+	<title>Friend Finder</title>
+	<!-- Latest compiled and minified CSS & JS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<!-- Font Awesome Glyphicons -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="style.css">	
 </head>
-<body>
-  <div class='container'>
-    <div class='card-panel green col s12'>
-      <section class='center-align'>
-      <h1><i class="medium material-icons">person_pin</i> Friend Finder</h1>
-      <h4>Answer a few questions and meet your new best friend.</h4><br>
-      <a href='/survey' class="waves-effect waves-light btn cyan lighten-0"><i class="material-icons left">comment</i>Take Survey</a>
-      </section>
-    </div>
-    <div class='col s4'>
-      <p><a href='/api/friends'>API Friends List</a> | <a href='https://github.com/zinaw2017/friendFinder'>GitHub Repo</a></p>
-    </div>
-  </div>
+<body class="bgimage">
+
+	<div class="container">
+		<div class="jumbotron">
+			<h1 class="fa fa-heartbeat" style="font-size:100px;color:red"> Friend Finder</h1>
+			<hr>
+			<h3>Answer a few basic questions on the survey.</h3>
+			<h3>Then find the friend with the greatest compatibility!</h3>
+			<a href="./survey.html"><button type="button" class="btn btn-primary btn-lg"><span class="fa fa-key"></span> Take the Survey</button></a>
+			
+			<br>
+	
+		 <footer class="footer">
+	      <div class="container">
+		        <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/zinaw2017/friendFinder">GitHub Repo</a></p>
+	      </div>
+	    </footer>
+	</div>
+	</div>
 
 </body>
 </html>

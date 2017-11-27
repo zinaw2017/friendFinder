@@ -1,0 +1,11 @@
+.jumbotron {
+		background-color: transparent !important;
+		background: green !important;
+		color: #ffffff !important;
+		opacity: 0.8;
+	}
+
+.bgimage {
+	background-image: url('images/map.GIF');
+}
+

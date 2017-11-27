@@ -1,7 +1,7 @@
 {
   "name": "friendfinder",
   "version": "1.0.0",
-  "description": "Created during Week 13 of Rutgers Coding Bootcamp. The goal was to create a Friend Finder app (essentially a dating app but for friends) using Node and Express servers. The user enters the page that leads to a survey. When the user submits the survey, they are matched with a \"friend\" that has the closest match to their personality.",
+  "description": "This is an application that uses Node.js and Express to run the web server, to serve up the application.  The application requests a user take a survey to help match them with other friends on the site.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
